@@ -18,8 +18,20 @@ body {
 }
 
 header {
-  padding: 2px 5px 0px 5px;
+  padding: 10px 8px 0px 8px;
+  color: hsl(206, 17%, 28%);
+  font-size: large;
 }
+
+header a {
+  text-decoration: none;
+  color:hsl(360, 91%, 36%)
+}
+
+header a:hover {
+  color: hsl(0, 100%, 72%);
+}
+
 header div:first-child {
   float: left;
 }
@@ -64,7 +76,7 @@ header div:last-child {
   text-align: center;
 }
 
-#question .card-footer {
+#question .card-footer, #results .card-footer {
   font-size: 2em;
 }
 
@@ -129,8 +141,29 @@ ul li:hover {
   background-color: hsl(0, 100%, 72%);
 }
 
-.float-right {
-  float: right;
+ol {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+ol li::before {
+  content: counter(step-counter);
+  margin-right: 20px;
+  font-size: 80%;
+  background-color:slategray;
+  color: white;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 11px;
+}
+
+ol li {
+  counter-increment: step-counter;
+  background-color:lightgray;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
 }
 
 @media (max-width: 690px) {
