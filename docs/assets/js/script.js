@@ -1,58 +1,39 @@
 // Declare Variables
-var start = document.getElementById("start");
-var question = document.getElementById("question");
-var results = document.getElementById("results");
+var startContainer = document.getElementById("start");
+var questionContainer = document.getElementById("question");
+var timerContainer = document.getElementById("time-remaining");
+var resultsContainer = document.getElementById("results");
+
+var questions = []
+var timeRemaining = 76;
 var currentQuestion = 0;
 var score = 0;
-
-var questions = [
-  {
-    title: "Commonly used data types DO NOT include:",
-    choices: ["strings", "booleans", "alerts", "numbers"],
-    correct: 3
-  },
-  {
-    title: "The condition in an if / else statement is enclosed with ______.",
-    choices: ["quotes", "curly brackets", "parenthesis", "square brackets"],
-    correct: 3
-  },
-  {
-    title: "Arrays in JavaScript can be used to store ______.",
-    choices: ["numbers and strings", "other arrays", "booleans", "all of the above"],
-    correct: 4
-  },
-  {
-    title: "String values must be enclosed within ______ when being assigned to variables.",
-    choices: ["commas", "curly brackets", "quotes", "parenthesis"],
-    correct: 3
-  },
-  {
-    title: "A very useful tool used during development and debugging for printing content to the debugger is:",
-    choices: ["JavaScript", "terminal/bash", "for loops", "console.log"],
-    correct: 4
-  }
-]
+var scoreLog = {};
 
 // Get references to the #generate element
 var startBtn = document.querySelector("#start");
 
-function startQuiz() {
-  var timeRemaining = 26;
-  var timer = setInterval(() => {
+async function startQuiz() {
+  var timerInterval = setInterval(() => {
     timeRemaining = timeRemaining - 1;
-    var timerContainer = document.getElementById("time-remaining");
     timerContainer.textContent = timeRemaining;
 
     if(timeRemaining < 1){
-      question.style.display = "none";
+      timerContainer.textContent = "GAME OVER";
       getResults();
-      clearInterval(timer);
+      clearInterval(timerInterval);
     }
   }, 1000);
 
-  start.style.display = "none";
-  question.style.display = "block";
-  question.style.padding = "30px 20px 0px 20px";
+  // Import questions from external JSON
+  questions = await fetch("assets/js/questions.json")
+  .then(response => {
+    return response.json();
+  });
+
+  clearContainers();
+  questionContainer.style.display = "block";
+  questionContainer.style.padding = "30px 20px 0px 20px";
   getQuestionCard(currentQuestion);
 }
 
@@ -88,38 +69,62 @@ function getQuestionCard(questionNumber) {
   });
 }
 
+// Get Results and Store data
 function getResults(){
-  results.style.display = "block";
-  results.style.padding = "30px 20px 0px 20px";
+  clearContainers();
+  resultsContainer.style.display = "block";
+  resultsContainer.style.padding = "30px 20px 0px 20px";
+  console.log(resultsContainer);
+  // console.log(resultsContainer.getElementById("final-score"));
+}
+
+function clearContainers(){
+  startContainer.style.display = "none";
+  questionContainer.style.display = "none";
+  resultsContainer.style.display = "none";
 }
 
 // Add event listener to start button
 startBtn.addEventListener("click", startQuiz);
 
-// Add event listener for wrong answer
-// Add event listener for correct answer
-question.addEventListener("click", event => {
+// Event listener for answer selection
+// Points added for correct choice,
+// time taken away for incorrect choice.
+questionContainer.addEventListener("click", event => {
   var selected = event.target;
 
   if(selected.matches("li")){
     var choice = selected.getAttribute("class");
-
+    var answerText = "";
     switch (choice) {
       case "correct":
-        alert("Correct!");
+        answerText = "Correct!";
         score++;
         break;
       default:
-        alert("Wrong!");
-        score--;
+        answerText = "Wrong!";
+        timeRemaining--;
         break;
     }
-    
-  }
-  console.log(score);
-  console.log(currentQuestion);
-  currentQuestion = currentQuestion + 1;
-  getQuestionCard(currentQuestion);
-  console.log(currentQuestion);
-});
+    var answer = document.createElement("div")
+    answer.setAttribute("class", "card-footer")
 
+    var footer = questionContainer.getElementsByClassName("card")[0].getElementsByClassName("card-footer")[0];
+    if(!footer){
+      questionContainer.getElementsByClassName("card")[0].appendChild(answer);
+    }else {
+      answer = questionContainer.getElementsByClassName("card")[0].getElementsByClassName("card-footer")[0];
+    }
+    
+    answer.textContent = answerText;
+
+    currentQuestion = currentQuestion + 1;
+    if(currentQuestion > questions.length-1){
+      timeRemaining = 0;
+      getResults();
+    } else {
+      getQuestionCard(currentQuestion);
+    }
+   
+  }
+});

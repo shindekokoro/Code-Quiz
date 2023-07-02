@@ -64,6 +64,10 @@ header div:last-child {
   text-align: center;
 }
 
+#question .card-footer {
+  font-size: 2em;
+}
+
 .card-footer::before {
   content: " ";
   display: block;
