@@ -53,7 +53,7 @@ async function startQuiz() {
   }).catch( console.error() );
 
   // Set score value out of 100%
-  scoreValue = ( 100 / questions.length );
+  scoreValue = Math.floor( 100 / questions.length );
 
   // If starting a new game within current session reset variables
   if(currentQuestion !== 0){
