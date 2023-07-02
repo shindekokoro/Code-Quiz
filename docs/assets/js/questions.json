@@ -23,5 +23,20 @@
       "title": "A very useful tool used during development and debugging for printing content to the debugger is:",
       "choices": ["JavaScript", "terminal/bash", "for loops", "console.log"],
       "correct": 4
+    },
+    {
+      "title": "Who invented JavaScript programming language?",
+      "choices": ["Steve Jobs", "Brendan Eich", "Bill Gates", "James Gosling"],
+      "correct": 2
+    },
+    {
+      "title": "JavaScript and Java are the same?",
+      "choices": [true, false],
+      "correct": 2
+    },
+    {
+      "title": "JavaScript CANNOT be used in which of these environments?",
+      "choices": ["Web Browser", "Computer", "Coffee Maker", "Mobile Phone"],
+      "correct": 3
     }
   ]
