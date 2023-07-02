@@ -29,31 +29,49 @@
         </div>
       </div>
     </div>
+
     <div class="questions-wrapper" id="question">
       <div class="card">
         <div class="card-header">
-          <!-- Header Goes Here -->
+          <!-- Question Title Goes Here -->
         </div>
         <div class="card-body">
-          <!-- Questions Go Here -->
+          <!-- Question Go Here -->
         </div>
       </div>
     </div>
-    <div class="questions-wrapper" id="results">
+
+    <div class="results-wrapper" id="results">
       <div class="card">
         <div class="card-header">
           <h2>All done!</h2>
         </div>
         <div class="card-body">
-          <p>Your final score is: <span id="final-score">0</span></p>
+          <p>Your final score is: <span id="final-score"><!-- Final Score --></span></p>
           <form>
-            <label for="initials">Enter Intials: </label>
-            <input type="text" id="initials" name="initials">
-            <button>Submit</button>
+            <label for="initials">Enter Initials: </label>
+            <input type="text" id="initials" placeholder="initials" />
+            <button id="submitButton" class="btn">Submit</button>
           </form>
         </div>
       </div>
     </div>
+
+    <div class="score-wrapper" id="high-score">
+        <div class="card">
+          <div class="card-header">
+            <h2>High Scores</h2>
+          </div>
+          <div class="card-body">
+            <!-- High Scores Go Here -->    
+          </div>
+          <div class="card-footer">
+            <button id="goBack" class="btn">Go Back</button>
+            <button id="clearScores" class="btn">Clear Scores</button>
+          </div>
+        </div>
+    </div>
+
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
