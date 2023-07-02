@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JavaScript Code Quiz</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="icon" type="image/x-icon" href="./assets/images/faveicon.png" />
+    <link rel="shortcut icon" href="./assets/images/faveicon.png" />
+    <link rel="apple-touch-icon" href="./assets/images/touchicon.png" />
+  </head>
+  <body>
+    <header>
+      <div><a href="#high-scores">View High Scores</a></div>
+      <div><span class="time-remaining">Time: </span><span id="time-remaining">0</span></div>
+    </header>
+    <div class="quiz-wrapper" id="start">
+      <div class="card">
+        <div class="card-header">
+          <h1>Coding Quiz Challenge</h1>
+        </div>
+        <div class="card-body">
+          <p>Try to answer the following code-related questions within the time limit.</p>
+          <p>Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+        </div>
+        <div class="card-footer">
+          <button id="startButton" class="btn">Start Quiz</button>
+        </div>
+      </div>
+    </div>
+    <div class="questions-wrapper" id="question">
+      <div class="card">
+        <div class="card-header">
+          <!-- Header Goes Here -->
+        </div>
+        <div class="card-body">
+          <!-- Questions Go Here -->
+        </div>
+      </div>
+    </div>
+    <div class="questions-wrapper" id="results">
+      <div class="card">
+        <div class="card-header">
+          <h2>All done!</h2>
+        </div>
+        <div class="card-body">
+          <p>Your final score is: <span id="final-score">0</span></p>
+          <form>
+            <label for="initials">Enter Intials: </label>
+            <input type="text" id="initials" name="initials">
+            <button>Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
