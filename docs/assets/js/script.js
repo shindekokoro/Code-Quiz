@@ -135,6 +135,8 @@ questionContainer.addEventListener("click", event => {
     currentQuestion = currentQuestion + 1;
     if(currentQuestion > questions.length-1){
       timeRemaining = 0;
+      // Add footer to final results
+      resultsContainer.getElementsByClassName("card")[0].appendChild(answer);
       getResults();
     } else {
       getQuestionCard(currentQuestion);
@@ -168,7 +170,7 @@ function getHighScore(event) {
     event.preventDefault();
   }
   var initialsInput = document.querySelector("#initials");
-  var initials = initialsInput.value;
+  var initials = initialsInput.value.toUpperCase().slice(0,2);
   
   // Only add value to log if there is a value.
   if (initials){
